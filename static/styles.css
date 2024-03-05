@@ -525,6 +525,18 @@ div .dot {
     left: 20px;
 }
 
+h2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: poppins;
+  height: 75vh;
+  text-transform: uppercase;
+  font-size: 2em;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  z-index: 2;
+}
 /* About */
 
 #about{

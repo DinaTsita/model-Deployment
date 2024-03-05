@@ -1,14 +1,20 @@
 
 from url_processor import process_url
-import joblib
+import tensorflow as tf
 import numpy as np
-model = joblib.load('models/fmodel1.save')
+model = tf.keras.models.load_model('models/model14.keras')
 
 
 
 def predict_url(features):
+    if features is None:
+        return "Invalid Domain"
     prediction = model.predict(features)
     threshold = 0.5
     binary_predictions = [1 if pred >= threshold else 0 for pred in prediction]
-    binary_predictions = np.where(prediction >= threshold, 1, 0)
-    return binary_predictions.tolist()
+    if 0 in binary_predictions:
+        result = 'Legitimate'
+    elif 1 in binary_predictions:
+        result = 'Phishing'
+    return result
+

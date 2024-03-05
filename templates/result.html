@@ -95,18 +95,32 @@
         <a href="#"><img src="{{ url_for('static', filename='img/fish.png') }}" class="logo"></a>
         <div>
             <ul id="navbar">
-                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 
             </ul>
         </div>
     </section>
-    <form class="input_container" method="post" action="/predict">
-        <div class="input">
-            <label class="input_label" for="user_input">Phishing URL classifier</label>
-            <input type="url" id="user_input" name= "user_input" class="form_input" placeholder="Type or paste URL here" />
-        </div>
-    </form>
+    
    
+    <h2 id='predictionResult'>{{prediction}}</h2> 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the embedded prediction result
+            var prediction = document.getElementById('predictionResult').textContent.trim();
+            console.log('Prediction:', prediction);
+            var items = document.querySelectorAll('.wrapper > div');
+
+            items.forEach(function(item) {
+                if (prediction === "Legitimate") {
+                    item.style.border = '2px solid green'; 
+                } else if (prediction ==='Phishing') {
+                    item.style.border = '2px solid red'; 
+                }
+            })
+        });
+        </script>
+
 </body>
 </html>
